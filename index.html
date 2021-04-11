@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treino por tempo</title>
+    <title>Temporizador de treino</title>
     <link rel="stylesheet" href="estilos/index.css">
 </head>
 <body>
@@ -17,24 +17,25 @@
         <input type="number" placeholder="Número de Rounds" id="numDeRounds">
 
         <h2>Tempo de cada Round (seg):</h2>
-        <input type="number" placeholder="Tempo do Round" id="tempoDoRound">
+        <input type="number" placeholder="Tempo do Round" id="tempoDoRoundInput">
 
-        <h2>Tempo dos intervalos (seg):</h2>
+        <h2>Tempo de descanso (seg):</h2>
         <input type="number" placeholder="tempo do intervalo" id="tempointervalo">
         <br>
         <input type="button" value="Mostar informações" onclick="mostrarInfo()">
     </div>
     <div>
-        <div id="info" class="estrutura escondido">
-            <h3>Cronômetro:</h3>
-            <h4 id="roundDisplay">Round</h4> <p id="roundAtual">X/X</p>
-            <h4 id="descansoDisplay">Intervalo</h4>
-            <div id="cronômetro"></div>
-
-            <input type="button" value="start" onclick="start()">
-            <input type="button" value="Pause" class="escondido pauseZerar">
-            <input type="button" value="Zerar" class="escondido pauseZerar">
-        </div>
+        <table style="border: solid 1px black;" id="info" class="escondido">
+            <tr>
+                <td colspan="3">Informações</td> <td> Cronômetro</td> <td onclick="play()">play</td>
+            </tr>
+            <tr>
+                <td class="marcador">Round</td> <td id="roundAtual">x/x</td> <td id="tempoDoRound">x seg</td> <td id="temporizador" rowspan="2">xx seg</td> <td onclick="pause()">pause</td>
+            </tr>
+            <tr>
+                <td class="marcador">Descanso</td> <td colspan="2" id="tempoDescansoDisplay">x seg</td> <td onclick="zerar()">zerar</td>
+            </tr>
+        </table>
     </div>
     <script src="scripts/index.js"></script>
 </body>

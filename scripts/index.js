@@ -1,16 +1,35 @@
-var numDeRounds = document.getElementById('numDeRounds');
-var tempoDoRound = document.getElementById('tempoDoRound');
-var tempointervalo = document.getElementById('tempointervalo');
-var tempoInicial = 5;
+var numDeRounds = document.getElementById('numDeRounds');//input
+var tempoDoRound = document.getElementById('tempoDoRoundInput');//input
+var tempointervalo = document.getElementById('tempointervalo');//input
 
-const info = document.getElementById('info');
+const info = document.getElementById('info');//tabela
+const roundAtual = document.getElementById('roundAtual');//td qeu mostra o round atual
+const tempoDoRoundDisplay = document.getElementById('tempoDoRound');//td que mostra o tempo do round
+const tempoDescansoDisplay = document.getElementById('tempoDescansoDisplay');//td que mostra o tempo de descanso
+const temporizador = document.getElementById('temporizador');//td que mostra o tempo rodando
+const marcador = document.getElementsByClassName('marcador');
+
+var nrI;
+var trI;
+var tiI;
+
+var roundAtualIndex
+var numeroDeRounds
+
+var tempoDePreparo
+var contagemDoRound
+var contagemDescanso
+
+var loop;
+
+var vez = "tempo inicial"
 
 function mostrarInfo() {
-    let nrI = numDeRounds.value
-    let trI = tempoDoRound.value
-    let tiI = tempointervalo.value
+    nrI = numDeRounds.value//camptura o valor que está dentro do input
+    trI = tempoDoRound.value//camptura o valor que está dentro do input
+    tiI = tempointervalo.value;//camptura o valor que está dentro do input
     
-    if(nrI == 0 || nrI =="" || trI == 0 || trI == 0 || trI == "") {
+    if(nrI == 0 || nrI =="" || trI == 0 || trI == 0 || trI == "" || tiI == 0 || tiI == "") {
         alert("preencha todos os campos de maneira correta para continuar!!!");
         info.classList.add("escondido");
     } else {
@@ -18,25 +37,95 @@ function mostrarInfo() {
     }
 }
 
-function start() {
-    let pauseZerarbotão = document.getElementsByClassName('pauseZerar');
-    pauseZerarbotão[0].classList.remove('escondido');
-    pauseZerarbotão[1].classList.remove('escondido');
-}
-function pause() {
+function play() {
+    if(vez == "tempo inicial") {
 
+        roundAtualIndex = 1;
+        numeroDeRounds = nrI;
+
+        tempoDePreparo = 5;
+        contagemDoRound = trI;
+        contagemDescanso = tiI;
+
+    }
+    
+    loop = setInterval("iniciarCronômetro()", 1000);
+}
+
+function iniciarCronômetro() {
+    //o que tem que atualizar na tela?
+        //round atual:
+            //contagem crescente
+            //prrecisa de:
+                //indice do round atual
+                //numero de rounds
+        //temporizador
+            //contagem decrescente
+            //precisa de:
+                //vez (delay, round, descanso, parar)
+                //tempo de delay
+                //tempo do round
+                //tempo de descanso
+
+    //atualizar Round
+    roundAtual.innerHTML = `${roundAtualIndex}/${numeroDeRounds}`
+    //atualizar tempo
+    if(vez == "tempo inicial") {
+        renderizarTempo(tempoDePreparo);
+        tempoDePreparo--
+        if(tempoDePreparo < 0) {
+            vez = "round"
+        }
+    }else if(vez == "round") {
+        marcador[0].style = "background: red;"
+        marcador[1].style = "background: grey;"
+        renderizarTempo(contagemDoRound);
+        contagemDoRound--
+        if(contagemDoRound < 0) {
+            vez = "descanso"
+            roundAtualIndex++
+            contagemDoRound = trI;
+            if(roundAtualIndex > numeroDeRounds) {
+                pause();
+                vez = "tempo inicial"
+                roundAtualIndex = 1;
+            }
+            roundAtualIndex--
+        }
+    }else if(vez == "descanso") {
+        marcador[0].style = "background: grey;"
+        marcador[1].style = "background: red;"
+        renderizarTempo(contagemDescanso);
+        contagemDescanso--
+        if(contagemDescanso < 0) {
+            contagemDescanso = tiI;
+            vez = "round"
+            roundAtualIndex++
+            if(roundAtualIndex > numeroDeRounds) {
+                roundAtualIndex--
+            }
+        }
+    }
+    
+
+}
+
+function renderizarTempo(tempo) {
+    temporizador.innerHTML = `${tempo} seg`
+}
+
+
+
+function pause() {
+    clearInterval(loop);
 }
 function zerar() {
-    let nrI = numDeRounds.value;
-    let trI = tempoDoRound.value;
-    let tiI = tempointervalo.value;
-    let roundAtual = document.getElementById('roundAtual');
-    let roundAtualindex = 0;
-    let cronômetro = document.getElementById('cronômetro');
-    let descansoDisplay = document.getElementById('descansoDisplay');
-
-    roundAtual.innerHTML = `${roundAtualindex}/${nrI} | ${trI} seg`
-    cronômetro.innerHTML = `Inicia em: ${tempoInicial} seg`
-    descansoDisplay.innerHTML = `Intervalo ${tiI} seg`
+    pause();
+    var tempoInicial = 5;//tempo de delay antes de começar a rodar o temporizador
+    roundAtual.innerHTML = `1/${nrI}`
+    tempoDoRoundDisplay.innerHTML = `${trI} seg`
+    tempoDescansoDisplay.innerHTML = `${tiI} seg`
+    temporizador.innerHTML = tempoInicial + " seg"
     info.classList.remove("escondido");
+    var vez = "tempo inicial";
 }

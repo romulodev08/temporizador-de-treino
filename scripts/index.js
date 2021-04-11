@@ -39,34 +39,19 @@ function mostrarInfo() {
 
 function play() {
     if(vez == "tempo inicial") {
-
         roundAtualIndex = 1;
         numeroDeRounds = nrI;
-
         tempoDePreparo = 5;
         contagemDoRound = trI;
         contagemDescanso = tiI;
 
     }
-    
     loop = setInterval("iniciarCronômetro()", 1000);
+
+    marcador[1].style = "background: #F6150C;"
 }
 
 function iniciarCronômetro() {
-    //o que tem que atualizar na tela?
-        //round atual:
-            //contagem crescente
-            //prrecisa de:
-                //indice do round atual
-                //numero de rounds
-        //temporizador
-            //contagem decrescente
-            //precisa de:
-                //vez (delay, round, descanso, parar)
-                //tempo de delay
-                //tempo do round
-                //tempo de descanso
-
     //atualizar Round
     roundAtual.innerHTML = `${roundAtualIndex}/${numeroDeRounds}`
     //atualizar tempo
@@ -77,8 +62,8 @@ function iniciarCronômetro() {
             vez = "round"
         }
     }else if(vez == "round") {
-        marcador[0].style = "background: red;"
-        marcador[1].style = "background: grey;"
+        marcador[0].style = "background: #F6150C;"
+        marcador[2].style = "background: linear-gradient(#D4590B, #D4962B);"
         renderizarTempo(contagemDoRound);
         contagemDoRound--
         if(contagemDoRound < 0) {
@@ -86,15 +71,15 @@ function iniciarCronômetro() {
             roundAtualIndex++
             contagemDoRound = trI;
             if(roundAtualIndex > numeroDeRounds) {
-                pause();
+                zerar();
                 vez = "tempo inicial"
                 roundAtualIndex = 1;
             }
             roundAtualIndex--
         }
     }else if(vez == "descanso") {
-        marcador[0].style = "background: grey;"
-        marcador[1].style = "background: red;"
+        marcador[0].style = "background: linear-gradient(#D4590B, #D4962B);"
+        marcador[2].style = "background: #F6150C;"
         renderizarTempo(contagemDescanso);
         contagemDescanso--
         if(contagemDescanso < 0) {
@@ -118,6 +103,7 @@ function renderizarTempo(tempo) {
 
 function pause() {
     clearInterval(loop);
+
 }
 function zerar() {
     pause();
@@ -128,4 +114,7 @@ function zerar() {
     temporizador.innerHTML = tempoInicial + " seg"
     info.classList.remove("escondido");
     var vez = "tempo inicial";
+    marcador[0].style = "background: linear-gradient(#D4590B, #D4962B);"
+    marcador[2].style = "background: linear-gradient(#D4590B, #D4962B);"
+    marcador[1].style = "background: linear-gradient(#D4590B, #D4962B);"
 }

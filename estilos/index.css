@@ -9,40 +9,83 @@ body {
 
 header {
     text-align: center;
-    font-size: 20pt;
+    font-size: 18pt;
     padding-top: 15px;
     padding-bottom: 15px;
     background: linear-gradient(#F6310C, #EB6A00);
+    margin-bottom: 15px;
+}
+header p, header h1 {
+    min-width: 250px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
+#campoDePreenchimento {
+    width: 350px;
+    padding: 15px;
+    margin: auto;
+    border: solid 2px black;
+    border-radius: 10px;
+    background: linear-gradient(#F6C10C, #EB6A00);
+    box-shadow: 8px 8px 8px #F6310C;
+}
 
+#campoDePreenchimento h2 {
+    font-size: 15pt;
+    margin-top: 5px;
+}
 
+#campoDePreenchimento input[type="number"]{
+    height: 18px;
+    width: 300px;
+    border-radius: 8px;
+    text-align: center;
+}
 
+#campoDePreenchimento input[type="button"]{
+    margin: auto;
+    margin-top: 10px;
+    margin-left: 15px;
+    height: 25px;
+    padding: 3px 8px 3px 8px;
+    border-radius: 15px;
+}
 
-
+#campoDePreenchimento input[type="button"]:hover{
+    background: #6CD0D6;
+}
 
 table {
-    width: 300px;
+    width: 350px;
     height: 150px;
+    margin: auto;
+    margin-top: 15px;
+    background: #000;
+    box-shadow: 8px 8px 8px #F6310C;
 }
 td {
-    border: solid 1px black;
     text-align: center;
     padding: 2px 8px 2px 8px;
+    font-size: 15pt;
+    background: linear-gradient(#D4590B, #D4962B);
+}
+
+.controlesDoCronômetro{
+    background: #EB6A00;
+}
+.controlesDoCronômetro:hover{
+    background: #F6150C;
+}
+
+.cabeçaDaTabela{
+    background: #F6AE0C;
 }
 
 
 
-.estrutura {
-    text-align: center;
-    display: inline-block;
-    border: solid 2px black;
-    background: rgb(168, 240, 168);
-    border-radius: 10px;
-}
-#info {
-    background: grey;
-}
+
+/*pada uso do JavaScript*/
 .escondido {
     display: none;
 }

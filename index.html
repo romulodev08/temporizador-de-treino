@@ -9,10 +9,10 @@
 </head>
 <body>
     <header>
-        <h1>Treino por tempo</h1>
+        <h1>Temporizador de treino</h1>
         <p>Ideal para cronometrar repetições e pausas em seu treino</p>
     </header>
-    <div id="campoDePreenchimento" class="estrutura">
+    <div id="campoDePreenchimento">
         <h2>Número de Rounds:</h2>
         <input type="number" placeholder="Número de Rounds" id="numDeRounds">
 
@@ -27,13 +27,13 @@
     <div>
         <table style="border: solid 1px black;" id="info" class="escondido">
             <tr>
-                <td colspan="3">Informações</td> <td> Cronômetro</td> <td onclick="play()">play</td>
+                <td class="cabeçaDaTabela" colspan="3">Informações</td> <td class="cabeçaDaTabela"> Cronômetro</td> <td class="controlesDoCronômetro" onclick="play()">play</td>
             </tr>
             <tr>
-                <td class="marcador">Round</td> <td id="roundAtual">x/x</td> <td id="tempoDoRound">x seg</td> <td id="temporizador" rowspan="2">xx seg</td> <td onclick="pause()">pause</td>
+                <td class="marcador">Round</td> <td id="roundAtual">x/x</td> <td id="tempoDoRound">x seg</td> <td id="temporizador" class="marcador" rowspan="2">xx seg</td> <td class="controlesDoCronômetro" onclick="pause()">pause</td>
             </tr>
             <tr>
-                <td class="marcador">Descanso</td> <td colspan="2" id="tempoDescansoDisplay">x seg</td> <td onclick="zerar()">zerar</td>
+                <td class="marcador infoDescanso">Descanso</td> <td colspan="2" id="tempoDescansoDisplay" class="infoDescanso">x seg</td> <td class="controlesDoCronômetro" onclick="zerar()">zerar</td>
             </tr>
         </table>
     </div>

@@ -27,13 +27,13 @@
     <div>
         <table style="border: solid 1px black;" id="info" class="escondido">
             <tr>
-                <td class="cabeçaDaTabela" colspan="3">Informações</td> <td class="cabeçaDaTabela"> Cronômetro</td> <td class="controlesDoCronômetro" onclick="play()">play</td>
+                <td class="cabeçaDaTabela" colspan="3">Informações</td> <td class="cabeçaDaTabela"> Cronômetro</td> <td class="controlesDoCronômetro"><input type="button" value="play" onclick="play()"></td>
             </tr>
             <tr>
-                <td class="marcador">Round</td> <td id="roundAtual">x/x</td> <td id="tempoDoRound">x seg</td> <td id="temporizador" class="marcador" rowspan="2">xx seg</td> <td class="controlesDoCronômetro" onclick="pause()">pause</td>
+                <td class="marcador">Round</td> <td id="roundAtual">x/x</td> <td id="tempoDoRound">x seg</td> <td id="temporizador" class="marcador" rowspan="2">xx seg</td> <td class="controlesDoCronômetro"><input type="button" value="pause" onclick="pause()"></td>
             </tr>
             <tr>
-                <td class="marcador infoDescanso">Descanso</td> <td colspan="2" id="tempoDescansoDisplay" class="infoDescanso">x seg</td> <td class="controlesDoCronômetro" onclick="zerar()">zerar</td>
+                <td class="marcador infoDescanso">Descanso</td> <td colspan="2" id="tempoDescansoDisplay" class="infoDescanso">x seg</td> <td class="controlesDoCronômetro"><input type="button" value="zerar" onclick="zerar()"></td>
             </tr>
         </table>
     </div>
